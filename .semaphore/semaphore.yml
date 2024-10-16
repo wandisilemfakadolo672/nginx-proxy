@@ -2,8 +2,10 @@ version: v1.0
 name: Initial Pipeline
 agent:
   machine:
-    type: f1-standard-2
-    os_image: ubuntu2204
+    type: e1-standard-8
+    os_image: ubuntu2004
+execution_time_limit:
+  hours: 24
 blocks:
   - name: 'Block #1'
     task:
@@ -11,3 +13,7 @@ blocks:
         - name: 'Job #1'
           commands:
             - checkout
+          parallelism: 10
+      prologue:
+        commands:
+          - 'ls -la'
